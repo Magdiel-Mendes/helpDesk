@@ -1,0 +1,17 @@
+package com.magdiel.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.magdiel.Repository.TecnicoRepository;
+import com.magdiel.domain.Tecnico;
+
+public class TecnicoService {
+	@Autowired
+	private TecnicoRepository repository;
+	
+	public Tecnico findById(Integer id) {
+		Optional<Tecnico> obj = repository.findById(id);
+		return obj;
+	}

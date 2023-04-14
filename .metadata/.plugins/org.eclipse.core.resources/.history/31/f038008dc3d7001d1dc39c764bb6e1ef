@@ -1,0 +1,5 @@
+package com.magdiel.Repository;
+
+public class PessoaRepository {
+
+}

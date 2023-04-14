@@ -1,0 +1,53 @@
+package com.magdiel.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.magdiel.Repository.PessoaRepository;
+import com.magdiel.Repository.TecnicoRepository;
+import com.magdiel.domain.Pessoa;
+import com.magdiel.domain.Tecnico;
+import com.magdiel.domain.DTOs.TecnicoDTO;
+import com.magdiel.services.exceptions.DataIntegrityViolationException;
+import com.magdiel.services.exceptions.ObjectnotFoundException;
+
+@Service
+public class TecnicoService {
+	
+	@Autowired
+	private TecnicoRepository repository;
+	
+	@Autowired 
+	private PessoaRepository pessoaRepo;
+	
+	public Tecnico findById(Integer id) {
+		Optional<Tecnico> obj = repository.findById(id);
+		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado " + id));
+	}
+
+	// metodo para buscar todos as pessoas idependente do perfil
+	public List<Tecnico> findAll() {
+		return repository.findAll();
+	}
+	// Metodo para criar um tecnico
+	public Tecnico create(TecnicoDTO tecnicoDTO) {
+		tecnicoDTO.setId(null);
+		validaPorCpfEEmail(tecnicoDTO);
+		Tecnico tenico = new Tecnico(tecnicoDTO);
+		return repository.save(tenico);
+	}
+
+	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
+		Optional<Pessoa> tecnico = pessoaRepo.findByCpf(objDTO.getCpf());
+		if (tecnico.isPresent() && tecnico.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
+		}
+		tecnico = pessoaRepo.findByEmail(objDTO.getEmail());
+		if (tecnico.isPresent() && tecnico.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
+		}
+	}
+}

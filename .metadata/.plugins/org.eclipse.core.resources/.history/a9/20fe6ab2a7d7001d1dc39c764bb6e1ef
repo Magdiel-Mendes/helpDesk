@@ -1,0 +1,5 @@
+package com.magdiel.domain.enums.copy2;
+
+public enum Perfil {
+
+}

@@ -1,0 +1,5 @@
+package com.mago.userdept.Entities;
+
+public class Departament {
+
+}

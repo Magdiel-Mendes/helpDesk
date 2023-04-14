@@ -1,0 +1,5 @@
+package com.magdiel.controllers.exception;
+
+public class standardError {
+
+}

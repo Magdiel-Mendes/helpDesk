@@ -1,0 +1,18 @@
+package com.magdiel.controllers.exception;
+
+import java.io.Serializable;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.magdiel.services.exceptions.ObjectnotFoundException;
+
+public class ControllerExceptionHandler {
+	
+	@ExceptionHandler(ObjectnotFoundException.class)
+	public ResponseEntity<standardError> objectnotFoundException(ObjectnotFoundException ex, HttpServletRequest http){
+		
+	}
+}

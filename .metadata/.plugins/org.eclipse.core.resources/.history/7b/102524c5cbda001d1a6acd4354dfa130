@@ -1,0 +1,50 @@
+package com.magdiel.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.magdiel.Repository.ChamadoRepository;
+import com.magdiel.Repository.ClienteRepository;
+import com.magdiel.Repository.TecnicoRepository;
+import com.magdiel.domain.Chamado;
+import com.magdiel.domain.Cliente;
+import com.magdiel.domain.Tecnico;
+import com.magdiel.domain.DTOs.ChamadoDTO;
+import com.magdiel.domain.DTOs.ClienteDTO;
+import com.magdiel.services.exceptions.ObjectnotFoundException;
+
+@Service
+public class ChamadoService {
+
+
+	@Autowired
+	private ChamadoRepository repository;
+	
+	@Autowired
+	private TecnicoRepository tecRepository;
+	
+	@Autowired
+	private ClienteRepository cliRepository;
+	
+	public Chamado findById(Integer id) {
+		Optional<Chamado> obj = repository.findById(id);
+		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! ID: " + id));
+	}
+
+	public List<Chamado> findAll() {
+		return repository.findAll();
+	}
+	
+	public Chamado create(ChamadoDTO objDTO) {
+
+	}
+	private chamado newChamado(ChamadoDTO obj) {
+		Tecnico tecnico = tecRepository.findById(obj.getTecnico());
+		Cliente cliente = cliRepository.findById(obj.getTecnico());
+		
+	}
+
+}

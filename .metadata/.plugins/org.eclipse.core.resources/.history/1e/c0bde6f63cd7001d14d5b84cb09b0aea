@@ -1,0 +1,5 @@
+package com.mago.userdept.Repository;
+
+public interface UserRepository {
+
+}

@@ -1,0 +1,23 @@
+package com.magdiel.domain.DTOs;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+public class TecnicoDTO  {
+	private static final long serialVersionUID = 1L;
+	protected Integer id;
+	protected String name;
+	protected String cpf;
+	protected String email;
+	protected String senha;
+	protected Set<Integer> perfis = new HashSet<>();
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	protected LocalDate dataCriacao = LocalDate.now();
+
+}

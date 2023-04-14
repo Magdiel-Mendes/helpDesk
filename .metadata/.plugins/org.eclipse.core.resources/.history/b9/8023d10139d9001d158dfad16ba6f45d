@@ -1,0 +1,8 @@
+package com.magdiel.controllers.exception;
+
+import java.io.Serializable;
+
+public class FieldMessage Serializable {
+	private static final long serialVersionUID = 1L;
+
+}

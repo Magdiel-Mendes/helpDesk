@@ -1,0 +1,13 @@
+package com.magdiel.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.magdiel.domain.Chamado;
+import com.magdiel.domain.Cliente;
+
+public interface ChamadoRepository extends JpaRepository<Cliente, Integer>{
+
+
+}

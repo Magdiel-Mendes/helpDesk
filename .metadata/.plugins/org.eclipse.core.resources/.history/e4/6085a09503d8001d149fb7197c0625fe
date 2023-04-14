@@ -1,0 +1,51 @@
+package com.magdiel;
+
+
+import java.util.Arrays;
+ 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.magdiel.Repository.ChamadoRepository;
+import com.magdiel.Repository.ClienteRepository;
+import com.magdiel.Repository.PessoaRepository;
+import com.magdiel.Repository.TecnicoRepository;
+import com.magdiel.domain.Chamado;
+import com.magdiel.domain.Cliente;
+import com.magdiel.domain.Tecnico;
+import com.magdiel.domain.enums.Perfil;
+import com.magdiel.domain.enums.Prioridade;
+import com.magdiel.domain.enums.Status;
+
+@SpringBootApplication
+public class HelpdeskApplication implements CommandLineRunner {
+	@Autowired
+	private TecnicoRepository tecnicoRepo;
+	
+	@Autowired
+	private ClienteRepository clienteRepo;
+	 
+	
+	@Autowired
+	private ChamadoRepository chamadoRepo;
+
+	public static void main(String[] args) {
+		SpringApplication.run(HelpdeskApplication.class, args);
+	}
+	@Override
+	public void run(String... args) throws Exception {
+		Tecnico tec1 = new Tecnico(null, "Magdiel", "00853813905", "santos@gmail.com", "9666");
+		tec1.addPerfis(Perfil.ADMIN);
+		
+		Cliente cli1 = new Cliente(null, "Linus T", "13220629734", "linux@gmail.com", "123");
+		cli1.addPerfis(Perfil.CLIENTE);
+		
+		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 1","Primeiro chamdo", cli1, tec1);
+		
+		clienteRepo.saveAll(Arrays.asList(cli1));
+		chamadoRepo.saveAll(Arrays.asList(c1));
+		
+	}
+
+}

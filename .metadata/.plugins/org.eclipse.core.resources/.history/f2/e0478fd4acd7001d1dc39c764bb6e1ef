@@ -1,0 +1,10 @@
+package com.magdiel.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class Cliente extends Pessoa {
+	public List<Chamado> chamados = new ArrayList()<>();
+}

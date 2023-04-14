@@ -1,0 +1,16 @@
+package com.magdiel.domain;
+
+import java.time.LocalDate;
+
+import com.magdiel.domain.enums.Prioridade;
+import com.magdiel.domain.enums.Status;
+
+public class Chamado {
+     private LocalDate dataAbetura = LocalDate.now();
+     private LocalDate dataFechamneto;
+     private Prioridade prioridade;
+     private Status status;
+     private String titulo;
+     private String observacoes; 
+     
+}

@@ -1,0 +1,40 @@
+package com.magdiel.services;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.magdiel.Repository.ChamadoRepository;
+import com.magdiel.Repository.ClienteRepository;
+import com.magdiel.Repository.TecnicoRepository;
+import com.magdiel.domain.Chamado;
+import com.magdiel.domain.Cliente;
+import com.magdiel.domain.Tecnico;
+import com.magdiel.domain.enums.Perfil;
+import com.magdiel.domain.enums.Prioridade;
+import com.magdiel.domain.enums.Status;
+
+@Service
+public class DbServices {
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private TecnicoRepository tecnicoRepository;
+	
+	@Autowired
+	private ChamadoRepository chamadoRepository;
+	public void instanciaDb() {
+		Tecnico tec1 = new Tecnico(null, "Valdir cezar", "13220629784", "valdir@gmail.com", "123");
+		tec1.addPerfis(Perfil.ADMIN);
+		
+		Cliente cli1 = new Cliente(null, "Linus T", "13220629734", "linux@gmail.com", "123");
+		
+		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro Chamado", tec1, cli1);
+		
+		tecnicoRepository.saveAll(Arrays.asList(tec1));
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		chamadoRepository.saveAll(Arrays.asList(c1));
+	}
+}

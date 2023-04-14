@@ -1,0 +1,5 @@
+package com.magdiel.services.exceptions;
+
+public class ObjectnotFoundException {
+
+}

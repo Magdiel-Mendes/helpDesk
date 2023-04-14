@@ -1,0 +1,5 @@
+package com.magdiel.domain;
+
+public class Cliente extends Pessoa {
+
+}

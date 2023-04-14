@@ -1,0 +1,2 @@
+INSERT INTO CHAMADO(id, observacoes, prioridade, status, titolo, cliente_id, tecnico_id) VALUES (1, "primeiro chamado", BAIXA, ANDAMENTO, "CHAMADO1", 1,1);
+

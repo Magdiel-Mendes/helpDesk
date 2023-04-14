@@ -1,0 +1,5 @@
+package com.magdiel.domain.DTOs;
+
+public class TecnicoDTO {
+
+}
